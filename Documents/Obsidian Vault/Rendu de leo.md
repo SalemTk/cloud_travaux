@@ -269,3 +269,120 @@ terraform plan
 terraform apply
 
 terraform destroy
+
+
+
+# TP3A : Terraform + Azure
+
+# I. Network Security Group
+terraform apply
+```
+	Preuve 1
+	
+	indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # azurerm_linux_virtual_machine.main will be created
+  + resource "azurerm_linux_virtual_machine" "main" {
+      + admin_username                                         = "azureuser"
+      + allow_extension_operations                             = (known after apply)
+      + bypass_platform_safety_checks_on_user_schedule_enabled = false
+      + computer_name                                          = (known after apply)
+      + disable_password_authentication                        = (known after apply)
+      + disk_controller_type                                   = (known after apply)
+      + extensions_time_budget                                 = "PT1H30M"
+      + id                                                     = (known after apply)
+      + location                                               = "denmarkeast"
+      + max_bid_price                                          = -1
+      + name                                                   = "super-vm"
+      + network_interface_ids                                  = (known after apply)
+      + os_managed_disk_id                                     = (known after apply)
+      + patch_assessment_mode                                  = (known after apply)
+      + patch_mode                                             = (known after apply)
+      + platform_fault_domain                                  = -1
+      + priority                                               = "Regular"
+      + private_ip_address                                     = (known after apply)
+      + private_ip_addresses                                   = (known after apply)
+      + provision_vm_agent                                     = (known after apply)
+      + public_ip_address                                      = (known after apply)
+      + public_ip_addresses                                    = (known after apply)
+      + resource_group_name                                    = "tp2-tf-rg"
+      + size                                                   = "Standard_B1s"
+      + virtual_machine_id                                     = (known after apply)
+      + vm_agent_platform_updates_enabled                      = (known after apply)
+
+      + admin_ssh_key {
+          + public_key = <<-EOT
+                ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHeghQ0HbnexZG2Nat+QwfwBbuO0ZSiI9Z2CHgnEmTac cloud_tp1_efrei
+            EOT
+          + username   = "azureuser"
+        }
+
+      + os_disk {
+          + caching                   = "ReadWrite"
+          + disk_size_gb              = (known after apply)
+          + id                        = (known after apply)
+          + name                      = "vm-os-disk"
+          + storage_account_type      = "Standard_LRS"
+          + write_accelerator_enabled = false
+        }
+
+      + source_image_reference {
+          + offer     = "almalinux-x86_64"
+          + publisher = "almalinux"
+          + sku       = "9-gen2"
+          + version   = "latest"
+        }
+
+      + termination_notification (known after apply)
+    }
+```
+
+
+```
+Preuve 2
+
+az>> az vm show -g tp2-tf-rg -n super-vm --show-details -o table
+Name      ResourceGroup    PowerState    PublicIps    Fqdns    Location
+--------  ---------------  ------------  -----------  -------  -----------
+super-vm  tp2-tf-rg        VM running    9.205.155.4           denmarkeast
+
+```
+```
+Preuve 3
+
+```joblesstk@fedora:~/tp2-terraform$ ssh azureuser@9.205.155.4
+The authenticity of host '9.205.155.4 (9.205.155.4)' can't be established.
+ED25519 key fingerprint is SHA256:K72RtJmENPla08aLZGMse7oLeylEBFG70OQVKINAyaM.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '9.205.155.4' (ED25519) to the list of known hosts.
+[azureuser@super-vm ~]$ ls
+[azureuser@super-vm ~]$ ls -a
+.  ..  .bash_logout  .bash_profile  .bashrc  .ssh
+[azureuser@super-vm ~]$ 
+
+```
+
+```
+Preuve 4
+
+joblesstk@fedora:~/tp2-terraform$ sudo nano /etc/ssh/sshd_config
+[sudo] Mot de passe de joblesstk : 
+joblesstk@fedora:~/tp2-terraform$ sudo systemctl restart sshd
+joblesstk@fedora:~/tp2-terraform$ ss -tlnp | grep 2222
+LISTEN 0      128          0.0.0.0:2222       0.0.0.0:*                                       
+LISTEN 0      128             [::]:2222          [::]:*   
+```
+
+```
+Preuve 5
+
+joblesstk@fedora:~/tp2-terraform$ ssh -p 2222 azureuser@9.205.155.4
+Connection closed by 9.205.155.4 port 2222
+```
+
+
+# II. Un ptit nom DNS
