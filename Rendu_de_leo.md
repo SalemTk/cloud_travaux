@@ -228,7 +228,7 @@ Warning: Permanently added '9.205.152.231' (ED25519) to the list of known hosts.
 ● waagent.service - Azure Linux Agent
      Loaded: loaded (/usr/lib/systemd/system/waagent.service; enabled; preset: enabled)
      Active: active (running) since Mon 2026-03-23 10:27:33 UTC; 10min ago
- Invocation: f9edea55047444b1bcef04835485b90a
+ Invocation: ****************************
    Main PID: 1321 (python3)
       Tasks: 6 (limit: 5168)
      Memory: 48.2M (peak: 50.8M)
@@ -243,7 +243,7 @@ Warning: Permanently added '9.205.152.231' (ED25519) to the list of known hosts.
 ● cloud-init.service - Cloud-init: Network Stage
      Loaded: loaded (/usr/lib/systemd/system/cloud-init.service; enabled; preset: enabled)
      Active: active (exited) since Mon 2026-03-23 10:27:33 UTC; 11min ago
- Invocation: d19b6e36f7b5441586e863765f5c10ff
+ Invocation: *********************************
    Main PID: 945 (code=exited, status=0/SUCCESS)
    Mem peak: 49.9M
         CPU: 793ms
@@ -315,7 +315,7 @@ Terraform will perform the following actions:
 
       + admin_ssh_key {
           + public_key = <<-EOT
-                ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHeghQ0HbnexZG2Nat+QwfwBbuO0ZSiI9Z2CHgnEmTac cloud_tp1_efrei
+                ssh-ed25519 +++++++++++++++++++++++++++++++++++++++++ cloud_tp1_efrei
             EOT
           + username   = "azureuser"
         }
