@@ -80,4 +80,8 @@ resource "azurerm_linux_virtual_machine" "main" {
     sku       = "9-gen2"
     version   = "latest"
   }
+ identity {
+  type         = "UserAssigned"
+  identity_ids = [azurerm_user_assigned_identity.main.id]
+}
 }
