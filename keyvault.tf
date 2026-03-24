@@ -30,7 +30,7 @@ resource "azurerm_key_vault" "main" {
   }
   access_policy {
   tenant_id = data.azurerm_client_config.current.tenant_id
-  object_id = "02675e8e-ba3a-4ca4-980f-5bae9cc61ad6"
+  object_id = "*************************"
 
   secret_permissions = [
     "Get", "List", "Set", "Delete"
