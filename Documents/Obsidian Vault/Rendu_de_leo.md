@@ -315,7 +315,7 @@ Terraform will perform the following actions:
 
       + admin_ssh_key {
           + public_key = <<-EOT
-                ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHeghQ0HbnexZG2Nat+QwfwBbuO0ZSiI9Z2CHgnEmTac cloud_tp1_efrei
+                ssh-ed25519 ************************************************************ cloud_tp1_efrei
             EOT
           + username   = "azureuser"
         }
