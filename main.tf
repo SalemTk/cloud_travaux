@@ -50,6 +50,7 @@ resource "azurerm_public_ip" "main" {
   resource_group_name = azurerm_resource_group.main.name
   allocation_method   = "Static"
   sku                 = "Standard"
+  domain_name_label   = "tp2-vm-salem"
 }
 
 resource "azurerm_linux_virtual_machine" "main" {
