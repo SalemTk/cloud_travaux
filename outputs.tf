@@ -5,3 +5,8 @@ output "public_ip" {
 output "dns_name" {
   value = azurerm_public_ip.main.fqdn
 }
+
+output "secret_value" {
+  value     = azurerm_key_vault_secret.main.value
+  sensitive = true
+}
